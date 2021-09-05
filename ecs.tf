@@ -18,8 +18,7 @@ resource "aws_ecs_task_definition" "ECS-ResumeApp-Task" {
             "containerPort": 3000,
             "hostPort": 8888,
             "protocol": "tcp"
-          }
-        ]
+          }]
       }
     ]
   )
@@ -67,6 +66,14 @@ resource "aws_security_group" "load_balancer_security_group" {
   ingress {
     from_port        = 80
     to_port          = 80
+    protocol         = "tcp"
+    cidr_blocks      = ["0.0.0.0/0"]
+    ipv6_cidr_blocks = ["::/0"]
+    description = "HTTP"
+  }
+  ingress {
+    from_port        = 8888
+    to_port          = 8888
     protocol         = "tcp"
     cidr_blocks      = ["0.0.0.0/0"]
     ipv6_cidr_blocks = ["::/0"]

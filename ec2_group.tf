@@ -1,5 +1,5 @@
 resource "aws_launch_configuration" "ecs_launch_config" {
-  name =  "resumeApp-instance-"
+  name =  "resumeApp-instance"
   image_id = "ami-09db5b31ad3cd145d"
   iam_instance_profile = aws_iam_instance_profile.ecs_agent.name
   security_groups = [aws_security_group.load_balancer_security_group.id]
