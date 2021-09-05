@@ -1,1 +1,0 @@
-docker images nlanier_resume:latest -q

@@ -39,3 +39,16 @@ data "aws_subnet_ids" "public" {
         Name = "${var.app_name}-public-subnet-*"
     }
 }
+
+resource "aws_route_table" "aws-route" {
+  vpc_id = var.default_vpc
+
+  route {
+    cidr_block = "0.0.0.0/0"
+    gateway_id = "${aws_internet_gateway.aws-igw.id}"
+  }
+
+  tags = {
+    Name = "Public_to_ECS"
+  }
+}

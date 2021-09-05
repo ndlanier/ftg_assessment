@@ -4,26 +4,27 @@ resource "aws_ecs_cluster" "main_cluster" {
 
 resource "aws_ecs_task_definition" "ECS-ResumeApp-Task" {
   family = "Resume_Task"
+  memory = 400
+  cpu = 1024
   container_definitions = jsonencode(
     [
       {
         "name": "${var.app_name}-container",
         "image": "476540849243.dkr.ecr.us-east-2.amazonaws.com/demo-repo:latest",
-        "memory": 400,
-        "cpu": 1,
         "essential": true,
-        "entryPoint": ["/"],
         execution_role_arn = "${aws_iam_instance_profile.ecs_agent.arn}",
         "portMappings": [
           {
             "containerPort": 3000,
-            "hostPort": 8888
+            "hostPort": 8888,
+            "protocol": "tcp"
           }
         ]
       }
     ]
   )
   requires_compatibilities    = ["EC2"]
+  
 }
 
 data "aws_ecs_task_definition" "main" {
@@ -69,6 +70,7 @@ resource "aws_security_group" "load_balancer_security_group" {
     protocol         = "tcp"
     cidr_blocks      = ["0.0.0.0/0"]
     ipv6_cidr_blocks = ["::/0"]
+    description = "Container Node.JS Port"
   }
 
   egress {
@@ -91,13 +93,14 @@ resource "aws_lb_target_group" "target_group" {
   vpc_id      = var.default_vpc
 
   health_check {
-    healthy_threshold   = "3"
-    interval            = "300"
+    healthy_threshold   = "2"
+    interval            = "45"
     protocol            = "HTTP"
+    port                = "8888"
     matcher             = "200"
-    timeout             = "3"
-    path                = "/v1/status"
-    unhealthy_threshold = "2"
+    timeout             = "15"
+    path                = "/healthcheck.html"
+    unhealthy_threshold = "3"
   }
 
   tags = {

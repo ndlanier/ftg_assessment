@@ -5,22 +5,15 @@
 - [x] Set up AWS-managed Elasticsearch in a VPC
 - [x] Pick a web server container image and deploy/run in AWS behind an ELB
   - [x] ECR Created
-    - [ ] Manually
-    - [x] Terraform
   - [x] Docker Image Uploaded - See [this repo for application code](https://github.com/ndlanier/react-resume-template)
     - [x] Manually
     - [ ] Scripted
   - [x] ECS Cluster Created
-    - [x] Manualy
-    - [ ] Terraform
-      - Testing ECS Task definition in Terraform
   - [x] ELB Created
-    - [x] Manually
-    - [x] Terraform
 - [ ] Configure container logs/access logs to go to ES
   - [ ] Manually
     - See [issues.md](doc/issues.md)
-  - [ ] Terraform
+  - [x] Terraform
 - [x] Code in a public git repo that is used to create the infrastructure
 - [ ] Include a file in your repo that includes your suggestions on potential security concerns that affect your configuration
     - See [securityConcerns.md](doc/securityConcerns.md)
@@ -37,7 +30,7 @@
 - [ ] Cloud Trail logs going to ES
   - [ ] Manually
     - Same issue as container logs to ES issue, see [issues.md](doc/issues.md)
-  - [ ] Terraform
+  - [x] Terraform
 
 
 -----------
