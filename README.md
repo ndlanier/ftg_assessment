@@ -12,7 +12,9 @@
 -----------------
 
 ## Project Summary
-This project is to build an example deployment in AWS utilizing Terrarform as much as possible. I have the majority of the infrastructure of the deployment created with Terraform. The container being utilized was created utilizing the node 13.12.0-alpine image to containerize a reactjs based resume website that I built from a template.
+This project is to build an example deployment in AWS utilizing Terrarform as much as possible. I have the majority of the infrastructure of the deployment created with Terraform.
+
+The container being utilized was created utilizing the node 13.12.0-alpine image to containerize a reactjs based resume app that I built from a template. See [this repo for application code](https://github.com/ndlanier/react-resume-template).
 
 ------------
 
